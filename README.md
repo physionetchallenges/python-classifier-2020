@@ -1,4 +1,4 @@
-# Example prediction code for Python for the PhysioNet/CinC Challenge 2020
+# Example Python classifier for the PhysioNet/CinC Challenge 2020
 
 ## Contents
 
@@ -18,11 +18,8 @@ where `input_directory` is a directory for input data files and `output_director
 
 ## Submission
 
-The driver.py, run_12ECG_classifier.py, and get_12ECG_features.py scripts need to be in the base or root path of the Github repository. If they are inside a subfolder, then the submission will fail.
+The `driver.py`, `run_12ECG_classifier.py`, and `get_12ECG_features.py` scripts need to be in the base or root path of the Github repository. If they are inside a subfolder, then the submission will fail.
 
 ## Details
 
-The code uses a Python Online and Offline ECG QRS Detector based on the Pan-Tomkins algorithm. 
-        It was created and used for experimental purposes in psychophysiology and psychology.
-        You can find more information in module documentation:
-        https://github.com/c-labpl/qrs_detector
+The code uses a Python Online and Offline ECG QRS Detector based on the Pan-Tomkins algorithm. It was created and used for experimental purposes in psychophysiology and psychology. You can find more information in module documentation: https://github.com/c-labpl/qrs_detector
