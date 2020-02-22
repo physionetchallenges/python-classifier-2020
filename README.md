@@ -14,11 +14,11 @@ You can run this classifier by installing the packages in the `requirements.txt`
 
     python driver.py input_directory output_directory
 
-where `input_directory` is a directory for input data files and `output_directory` is a directory for output classification files. fThe PhysioNet/CinC 2020 webpage provides a training database with data files and a description of the contents and structure of these files.
+where `input_directory` is a directory for input data files and `output_directory` is a directory for output classification files. The PhysioNet/CinC 2020 webpage provides a training database with data files and a description of the contents and structure of these files.
 
 ## Submission
 
-The driver.py, run_12ECG_classifier.py, and get_12ECG_features.py scripts to be in the root path of the Github repository. If they are inside a folder, then the submission will fail.
+The driver.py, run_12ECG_classifier.py, and get_12ECG_features.py scripts need to be in the base or root path of the Github repository. If they are inside a subfolder, then the submission will fail.
 
 ## Details
 
