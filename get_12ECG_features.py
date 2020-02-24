@@ -149,8 +149,23 @@ def get_12ECG_features(data, header_data):
     for ii in range(num_leads):
         tmp_hea = header_data[ii+1].split(' ')
         gain_lead[ii] = int(tmp_hea[2].split('/')[0])
-    
-    label = header_data[15].split(' ')[1]
+
+    # for testing, we included the mean age of 57 if the age is a NaN
+    # This value will change as more data is being released
+    for iline in header_data:
+        if iline.startswith('#Age'):
+            tmp_age = iline.split(': ')[1].strip()
+            age = int(tmp_age if tmp_age != 'NaN' else 57)
+        elif iline.startswith('#Sex'):
+            tmp_sex = iline.split(': ')[1]
+            if tmp_sex.strip()=='Female':
+                sex =1
+            else:
+                sex=0
+        elif iline.startswith('#Dx'):
+            label = iline.split(': ')[1].split(',')[0]
+
+
     
 #   We are only using data from lead1
     peaks,idx = detect_peaks(data[0],sample_Fs,gain_lead[0])
@@ -179,7 +194,7 @@ def get_12ECG_features(data, header_data):
     kurt_RR = stats.kurtosis(idx/sample_Fs*1000)
     kurt_Peaks = stats.kurtosis(peaks*gain_lead[0])
 
-    features = np.hstack([mean_RR,mean_Peaks,median_RR,median_Peaks,std_RR,std_Peaks,var_RR,var_Peaks,skew_RR,skew_Peaks,kurt_RR,kurt_Peaks])
+    features = np.hstack([age,sex,mean_RR,mean_Peaks,median_RR,median_Peaks,std_RR,std_Peaks,var_RR,var_Peaks,skew_RR,skew_Peaks,kurt_RR,kurt_Peaks])
 
   
     return features
