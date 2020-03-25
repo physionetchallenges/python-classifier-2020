@@ -15,8 +15,7 @@ def run_12ECG_classifier(data,header_data,classes,model):
     feats_reshape = features.reshape(1,-1)
     label = model.predict(feats_reshape)
     score = model.predict_proba(feats_reshape)
-
-    current_label[label] = 1
+    current_label[label-2] = 1
 
     for i in range(num_classes):
         current_score[i] = np.array(score[0][i])
