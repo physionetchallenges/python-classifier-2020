@@ -5,13 +5,13 @@
 This code uses two main scripts to train the model and classify the data:
 
 * `train_model.py` Train your model. Add your model code to the `train_12ECG_model` function. It also performs all file input and output. **Do not** edit this script or we will be unable to evaluate your submission.
-* `driver.py` is the classifier which calls the output from your train_model. It also performs all file input and output. **Do not** edit this script or we will be unable to evaluate your submission.
+* `driver.py` is the classifier which calls the output from your `train_model` script. It also performs all file input and output. **Do not** edit this script or we will be unable to evaluate your submission.
 
-Check the code in these files for the input and output formats for the `train_model` and `driver` functions.
+Check the code in these files for the input and output formats for the `train_model` and `driver` scripts.
 
-To create and save your model, you should edit `train_12ECG_classifier.py` script. Note that you should not change the input arguments of the `train_12ECG_classifier` function, nor add output arguments. The needed models and parameters should be saved in a separated file. In the sample code an additional script, `get_12ECG_features.py` is used to extract hand-crafted features. 
+To create and save your model, you should edit `train_12ECG_classifier.py` script. Note that you should not change the input arguments of the `train_12ECG_classifier` function or add output arguments. The needed models and parameters should be saved in a separated file. In the sample code, an additional script, `get_12ECG_features.py`, is used to extract hand-crafted features. 
 
-To run your classifier, you should edit `run_12ECG_classifier.py` script, which takes a single recording as input and outputs the predicted classes and probabilities. Please, keep the formats of both outputs as they are shown in the example. You should not change the inputs and outputs of `run_12ECG_classifier` function.
+To run your classifier, you should edit the `run_12ECG_classifier.py` script, which takes a single recording as input and outputs the predicted classes and probabilities. Please, keep the formats of both outputs as they are shown in the example. You should not change the inputs and outputs of the `run_12ECG_classifier` function.
 
 ## Use
 
