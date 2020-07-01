@@ -4,8 +4,8 @@
 
 This code uses two main scripts to train the model and classify the data:
 
-* `train_model.py` Train your model. Add your model code to the `train_12ECG_model` function. It also performs all file input and output. **Do not** edit this script -- or we will be unable to evaluate your submission.
-* `driver.py` is the classifier which calls the output from your train_model. It also performs all file input and output. **Do not** edit this script -- or we will be unable to evaluate your submission.
+* `train_model.py` Train your model. Add your model code to the `train_12ECG_model` function. It also performs all file input and output. **Do not** edit this script or we will be unable to evaluate your submission.
+* `driver.py` is the classifier which calls the output from your train_model. It also performs all file input and output. **Do not** edit this script or we will be unable to evaluate your submission.
 
 Check the code in these files for the input and output formats for the `train_model` and `driver` functions.
 
@@ -20,7 +20,11 @@ You can run this classifier code by installing the requirements and running
     python train_model.py training_data model   
     python driver.py model test_data test_outputs
 
-where `training_data` is a directory of training data files, `model` is a directory of files for the model, `testing_data` is the directory of test data files, and `test_outputs` is a directory of classifier outputs.  The [PhysioNet/CinC 2020 webpage](https://physionetchallenges.github.io/2020/) provides a training database with data files and a description of the contents and structure of these files.
+where `training_data` is a directory of training data files, `model` is a directory of files for the model, `test_data` is the directory of test data files, and `test_outputs` is a directory of classifier outputs.  The [PhysioNet/CinC 2020 webpage](https://physionetchallenges.github.io/2020/) provides a training database with data files and a description of the contents and structure of these files.
+
+## Submission
+
+The `driver.py`, `get_12ECG_score.py`, and `get_12ECG_features.py` scripts must be in the root path of your repository. If they are inside a folder, then the submission will be unsuccessful.
 
 ## Details
 
