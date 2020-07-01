@@ -1,31 +1,33 @@
 #!/usr/bin/env python
 
-import numpy as np
+import numpy as np, os, sys
 import joblib
 from get_12ECG_features import get_12ECG_features
 
-def run_12ECG_classifier(data,header_data,classes,model):
+def run_12ECG_classifier(data,header_data,classes,loaded_model):
 
     num_classes = len(classes)
-    current_label = np.zeros(num_classes, dtype=int)
-    current_score = np.zeros(num_classes)
 
-    # Use your classifier here to obtain a label and score for each class. 
+    # Use your classifier here to obtain a label and score for each class.
+    model = loaded_model['model']
+    imputer = loaded_model['imputer']
+
     features=np.asarray(get_12ECG_features(data,header_data))
-    feats_reshape = features.reshape(1,-1)
-    label = model.predict(feats_reshape)
-    score = model.predict_proba(feats_reshape)
-
-    current_label[label] = 1
-
-    for i in range(num_classes):
-        current_score[i] = np.array(score[0][i])
+    feats_reshape = features.reshape(1, -1)
+    feats_reshape = imputer.transform(feats_reshape)
+    current_label = model.predict(feats_reshape)[0]
+    current_label=current_label.astype(int)
+    current_score = model.predict_proba(feats_reshape)
+    current_score=np.asarray(current_score)
+    current_score=current_score[:,0,1]
 
     return current_label, current_score
 
-def load_12ECG_model():
+def load_12ECG_model(input_directory):
     # load the model from disk 
-    filename='finalized_model.sav'
+    f_out='finalized_model.sav'
+    filename = os.path.join(input_directory,f_out)
+
     loaded_model = joblib.load(filename)
 
     return loaded_model
