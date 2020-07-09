@@ -4,13 +4,13 @@ import numpy as np, os, sys
 import joblib
 from get_12ECG_features import get_12ECG_features
 
-def run_12ECG_classifier(data,header_data,classes,loaded_model):
+def run_12ECG_classifier(data,header_data,loaded_model):
 
-    num_classes = len(classes)
 
     # Use your classifier here to obtain a label and score for each class.
     model = loaded_model['model']
     imputer = loaded_model['imputer']
+    classes = loaded_model['classes']
 
     features=np.asarray(get_12ECG_features(data,header_data))
     feats_reshape = features.reshape(1, -1)
@@ -21,7 +21,7 @@ def run_12ECG_classifier(data,header_data,classes,loaded_model):
     current_score=np.asarray(current_score)
     current_score=current_score[:,0,1]
 
-    return current_label, current_score
+    return current_label, current_score,classes
 
 def load_12ECG_model(input_directory):
     # load the model from disk 

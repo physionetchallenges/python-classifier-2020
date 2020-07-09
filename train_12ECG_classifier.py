@@ -62,7 +62,7 @@ def train_12ECG_classifier(input_directory, output_directory):
     # Save model.
     print('Saving model...')
 
-    final_model={'model':model, 'imputer':imputer}
+    final_model={'model':model, 'imputer':imputer,'classes':classes}
 
     filename = os.path.join(output_directory, 'finalized_model.sav')
     joblib.dump(final_model, filename, protocol=0)
