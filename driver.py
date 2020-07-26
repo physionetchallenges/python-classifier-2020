@@ -6,7 +6,6 @@ from run_12ECG_classifier import load_12ECG_model, run_12ECG_classifier
 
 def load_challenge_data(filename):
 
-
     x = loadmat(filename)
     data = np.asarray(x['val'], dtype=np.float64)
 
@@ -35,30 +34,16 @@ def save_challenge_predictions(output_directory,filename,scores,labels,classes):
     with open(output_file, 'w') as f:
         f.write(recording_string + '\n' + class_string + '\n' + label_string + '\n' + score_string + '\n')
 
-  
-# Find unique number of classes  
-def get_classes(input_directory,files):
 
-    classes=set()
-    for f in files:
-        g = f.replace('.mat','.hea')
-        input_file = os.path.join(input_directory,g)
-        with open(input_file,'r') as f:
-            for lines in f:
-                if lines.startswith('#Dx'):
-                    tmp = lines.split(': ')[1].split(',')
-                    for c in tmp:
-                        classes.add(c.strip())
-
-    return sorted(classes)
 
 if __name__ == '__main__':
     # Parse arguments.
-    if len(sys.argv) != 3:
+    if len(sys.argv) != 4:
         raise Exception('Include the input and output directories as arguments, e.g., python driver.py input output.')
 
-    input_directory = sys.argv[1]
-    output_directory = sys.argv[2]
+    model_input = sys.argv[1]
+    input_directory = sys.argv[2]
+    output_directory = sys.argv[3]
 
     # Find files.
     input_files = []
@@ -69,11 +54,9 @@ if __name__ == '__main__':
     if not os.path.isdir(output_directory):
         os.mkdir(output_directory)
 
-    classes=get_classes(input_directory,input_files)
-
     # Load model.
     print('Loading 12ECG model...')
-    model = load_12ECG_model()
+    model = load_12ECG_model(model_input)
 
     # Iterate over files.
     print('Extracting 12ECG features...')
@@ -83,7 +66,7 @@ if __name__ == '__main__':
         print('    {}/{}...'.format(i+1, num_files))
         tmp_input_file = os.path.join(input_directory,f)
         data,header_data = load_challenge_data(tmp_input_file)
-        current_label, current_score = run_12ECG_classifier(data,header_data,classes, model)
+        current_label, current_score,classes = run_12ECG_classifier(data,header_data, model)
         # Save results.
         save_challenge_predictions(output_directory,f,current_score,current_label,classes)
 
