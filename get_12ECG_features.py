@@ -162,8 +162,8 @@ def get_12ECG_features(data, header_data):
                 sex =1
             else:
                 sex=0
-        elif iline.startswith('#Dx'):
-            label = iline.split(': ')[1].split(',')[0]
+#        elif iline.startswith('#Dx'):
+#            label = iline.split(': ')[1].split(',')[0]
 
 
     
