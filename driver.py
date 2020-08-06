@@ -39,7 +39,7 @@ def save_challenge_predictions(output_directory,filename,scores,labels,classes):
 if __name__ == '__main__':
     # Parse arguments.
     if len(sys.argv) != 4:
-        raise Exception('Include the input and output directories as arguments, e.g., python driver.py input output.')
+        raise Exception('Include the model, input and output directories as arguments, e.g., python driver.py model input output.')
 
     model_input = sys.argv[1]
     input_directory = sys.argv[2]
