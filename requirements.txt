@@ -1,5 +1,5 @@
 numpy==1.17.4
-scipy==1.2.1
+scipy==1.10.0
 joblib==0.13.2
 Cython==0.29.13
 pandas==0.25.3
